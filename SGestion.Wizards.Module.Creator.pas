@@ -10,11 +10,11 @@ type
   TModuleCreator = class(TCreator, IOTAModuleCreator)
   private
     FName: string;
-    FFormName: string;
+    FTemplateName: string;
     FIsMain: Boolean;
     FIsData: Boolean;
   public
-    constructor Create(Name, FormName: string; IsData: Boolean = False; IsMain: Boolean = False);
+    constructor Create(Name, TemplateName: string; IsData: Boolean = False; IsMain: Boolean = False);
 
     //IOTACreator
     function GetCreatorType: string; override;
@@ -39,10 +39,10 @@ uses
   SGestion.Wizards.Utils,
   System.SysUtils;
 
-constructor TModuleCreator.Create(Name, FormName: string;  IsData: Boolean = False; IsMain: Boolean = False);
+constructor TModuleCreator.Create(Name, TemplateName: string;  IsData: Boolean = False; IsMain: Boolean = False);
 begin
   FName:= Name;
-  FFormName:= FormName;
+  FTemplateName:= TemplateName;
   FIsMain:= IsMain;
   FIsData:= IsData;
 end;
@@ -105,12 +105,12 @@ end;
 
 function TModuleCreator.NewFormFile(const FormIdent, AncestorIdent: string): IOTAFile;
 begin
-  Result := TResourceFile.Create(FName, FFormName + 'DFM');
+  Result := TResourceFile.Create(FName, FTemplateName + 'DFM');
 end;
 
 function TModuleCreator.NewImplSource(const ModuleIdent, FormIdent, AncestorIdent: string): IOTAFile;
 begin
-  Result := TResourceFile.Create(FName, FFormName + 'SRC');
+  Result := TResourceFile.Create(FName, FTemplateName + 'SRC');
 end;
 
 function TModuleCreator.NewIntfSource(const ModuleIdent, FormIdent, AncestorIdent: string): IOTAFile;

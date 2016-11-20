@@ -15,11 +15,13 @@ resourcestring
 type
   TCatalogoWizard = class(TWizard, IOTAFormWizard, IOTAFormWizard100)
   public
-    function IsVisible(Project: IOTAProject): Boolean;
     //IOTAWizard
     procedure Execute; override;
     function GetIDString: string; override;
     function GetName: string; override;
+
+    //IOTAFormWizard100
+    function IsVisible(Project: IOTAProject): Boolean;
   end;
 
 implementation
@@ -55,9 +57,13 @@ end;
 
 {$ENDREGION}
 
+{$REGION 'IOTAFormWizard100'}
+
 function TCatalogoWizard.IsVisible(Project: IOTAProject): Boolean;
 begin
   Result:= True;
 end;
+
+{$ENDREGION}
 
 end.
