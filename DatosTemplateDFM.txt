@@ -1,0 +1,7 @@
+inherited dm?: Tdm?
+  OnCreate = DataModuleCreate
+  inherited qryDatos: TZQuery
+    SQL.Strings = (
+      'select * from ?')
+  end
+end

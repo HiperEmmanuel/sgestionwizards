@@ -1,0 +1,45 @@
+package SGestionWizards;
+
+{$R *.res}
+{$R *.dres}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  designide;
+
+contains
+  SGestion.Wizards.Reg in 'SGestion.Wizards.Reg.pas',
+  SGestion.Wizards.Project.Creator in 'SGestion.Wizards.Project.Creator.pas',
+  SGestion.Wizards.Project.Wizard in 'SGestion.Wizards.Project.Wizard.pas',
+  SGestion.Wizards.Module.Creator in 'SGestion.Wizards.Module.Creator.pas',
+  SGestion.Wizards.Utils in 'SGestion.Wizards.Utils.pas',
+  SGestion.Wizards.Creator in 'SGestion.Wizards.Creator.pas',
+  SGestion.Wizards.Wizard in 'SGestion.Wizards.Wizard.pas',
+  SGestion.Wizards.Operacion.Wizard in 'SGestion.Wizards.Operacion.Wizard.pas',
+  SGestion.Wizards.Catalogo.Wizard in 'SGestion.Wizards.Catalogo.Wizard.pas';
+
+end.

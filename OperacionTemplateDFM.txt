@@ -1,0 +1,29 @@
+inherited frm?: Tfrm?
+  Caption = '?'
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  inherited actCatalogo: TActionList
+    inherited actInforme: TAction
+      OnExecute = actInformeExecute
+    end
+  end
+  inherited pgcCatalogo: TPageControl
+    inherited tsListado: TTabSheet
+      inherited grdCatalogo: TDBGrid
+        DataSource = dm?.dsDatos
+        OnDblClick = grdCatalogoDblClick
+      end
+    end
+    inherited tsEditor: TTabSheet
+      inherited pnlDetalles: TPanel
+        inherited grdDetalles: TDBGrid
+          DataSource = dm?.dsDetalles
+        end
+        inherited navDatos: TDBNavigator
+          DataSource = dm?.dsDetalles
+          Hints.Strings = ()
+        end
+      end
+    end
+  end  
+end

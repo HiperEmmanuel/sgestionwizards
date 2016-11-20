@@ -1,0 +1,32 @@
+inherited dm?: Tdm?
+  OnCreate = DataModuleCreate
+  inherited cdsDatos: TClientDataSet
+    object cdsDatosqryDetalles: TDataSetField
+      FieldName = 'qryDetalles'
+    end
+  end
+  inherited qryDatos: TZQuery
+    SQL.Strings = (
+      'select * from ?')
+  end
+  inherited cdsDetalles: TClientDataSet
+    DataSetField = cdsDatosqryDetalles
+  end
+  inherited qryDetalles: TZQuery
+    Active = True
+    SQL.Strings = (
+      'select * from ?_datos where id_? = :id_?')
+    Params = <
+      item
+        DataType = ftString
+        Name = 'id_?'
+        ParamType = ptInput
+      end>
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'id_?'
+        ParamType = ptInput
+      end>
+  end
+end
