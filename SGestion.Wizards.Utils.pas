@@ -5,6 +5,8 @@ interface
 uses
   ToolsAPI;
 
+function SelectDir(IsProject: Boolean = False): Boolean;
+
 /// <summary>
 ///  These funcions are all by David Hoyle's, and you can find them all in his book:
 ///  The Delphi Open Tools API book at:
@@ -66,7 +68,54 @@ uses
   System.Types,
   System.SysUtils,
   System.StrUtils,
-	System.Classes;
+	System.Classes,
+  System.IOUtils,
+  System.Win.Registry,
+  Vcl.Dialogs,
+  Windows;
+
+function SelectDir(IsProject: Boolean = False): Boolean;
+const
+  APP_KEY = 'Software\SGestionWizards\';
+begin
+  with TFileOpenDialog.Create(nil) do
+    try
+      Title := 'Selecciona una carpeta';
+      Options := [fdoPickFolders, fdoPathMustExist, fdoForceFileSystem]; // YMMV
+      OkButtonLabel := 'Selecconar';
+      DefaultFolder := TPath.GetDocumentsPath + '\Embarcadero\Studio\Projects';
+      FileName := TPath.GetDocumentsPath + '\Embarcadero\Studio\Projects';
+      if IsProject and Execute then
+      begin
+        SetCurrentDir(FileName);
+        with TRegistry.Create(KEY_READ or KEY_WOW64_64KEY) do
+        try
+          RootKey:= HKEY_CURRENT_USER;
+          Access := KEY_WRITE or KEY_WOW64_64KEY;
+          OpenKey(APP_KEY, True);
+          WriteString('Path', FileName);
+          CloseKey;
+        finally
+          Free
+        end;
+        Result:= True;
+      end
+      else
+      begin
+        with TRegistry.Create(KEY_READ or KEY_WOW64_64KEY) do
+        try
+          RootKey:= HKEY_CURRENT_USER;
+          OpenKey(APP_KEY, True);
+          SetCurrentDir(ReadString('Path'));
+          CloseKey;
+        finally
+          Free;
+        end;
+      end;
+    finally
+      Free;
+    end
+end;
 
 function ActiveProjectGroup: IOTAProjectGroup;
 var

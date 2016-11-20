@@ -69,6 +69,7 @@ end;
 
 function TModuleCreator.GetImplFileName: string;
 begin
+  SelectDir;
   if FIsData then
     Result := GetCurrentDir + '\udm' + FName + '.pas'
   else

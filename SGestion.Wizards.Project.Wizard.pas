@@ -24,7 +24,8 @@ type
 implementation
 
 uses
-  SGestion.Wizards.Project.Creator;
+  SGestion.Wizards.Project.Creator,
+  SGestion.Wizards.Utils;
 
 { TProjectWizard }
 
@@ -41,7 +42,8 @@ end;
 
 procedure TProjectWizard.Execute;
 begin
-  (BorlandIDEServices as IOTAModuleServices).CreateModule(TProjectCreator.Create);
+  if SelectDir(True) then
+    (BorlandIDEServices as IOTAModuleServices).CreateModule(TProjectCreator.Create);
 end;
 
 function TProjectWizard.GetIDString: string;
