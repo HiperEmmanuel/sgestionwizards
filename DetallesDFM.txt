@@ -1,12 +1,11 @@
 inherited dmDetalles: TdmDetalles
-  OldCreateOrder = True
-  OnCreate = nil
+  OnCreate = DataModuleCreate
   object dsDetalles: TDataSource
     DataSet = cdsDetalles
     Left = 72
     Top = 152
   end
-  object cdsDetalles: TClientDataSet
+  object cdsDetalles: TrpClientDataSet
     Aggregates = <>
     Params = <>
     Left = 72

@@ -1,6 +1,6 @@
 inherited dm?: Tdm?
   OnCreate = DataModuleCreate
-  inherited cdsDatos: TClientDataSet
+  inherited cdsDatos: TrpClientDataSet
     object cdsDatosqryDetalles: TDataSetField
       FieldName = 'qryDetalles'
     end
@@ -9,7 +9,7 @@ inherited dm?: Tdm?
     SQL.Strings = (
       'select * from ?')
   end
-  inherited cdsDetalles: TClientDataSet
+  inherited cdsDetalles: TrpClientDataSet
     DataSetField = cdsDatosqryDetalles
   end
   inherited qryDetalles: TZQuery
